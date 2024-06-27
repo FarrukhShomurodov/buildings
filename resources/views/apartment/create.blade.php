@@ -191,7 +191,7 @@
                         const imgContainer = $('<div>', {class: 'image-container td__img'});
                         imgContainer.append(imgElement);
 
-                        /
+
                         const deleteBtn = $('<button>', {
                             class: 'btn btn-danger btn-sm delete-image',
                             text: 'Delete',

@@ -3,7 +3,7 @@
 @section('content')
     <div class="card">
         <div class="d-flex justify-content-between align-items-center">
-            <h5 class="card-header">Table Basic</h5>
+            <h5 class="card-header">Apartment</h5>
             <a href="{{ route('apartments.create') }}" class="btn btn-primary" style="margin-right: 22px;">Create</a>
         </div>
 

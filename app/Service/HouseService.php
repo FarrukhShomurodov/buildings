@@ -34,6 +34,9 @@ class HouseService
 
     public function destroy(House $house): void
     {
+        if (Storage::disk('public')->exists($house->photo_url)) {
+            Storage::disk('public')->delete($house->photo_url);
+        }
         $house->delete();
     }
 }

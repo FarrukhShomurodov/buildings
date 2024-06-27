@@ -3,7 +3,7 @@
 @section('content')
     <div class="card">
         <div class="d-flex justify-content-between align-items-center">
-            <h5 class="card-header">Table Basic</h5>
+            <h5 class="card-header">Floors</h5>
 
             <div class="d-flex justify-content-center align-items-center">
 
@@ -15,8 +15,8 @@
                                 <option
                                     value="{{ $house->id }}" @selected($house->id == (isset(request()->segments()[1]) ? request()->segments()[1] : 1) )>{{ $house->name }}</option>
                             @endforeach
+                            <option value="all">All</option>
                             <option disabled @selected(!isset(request()->segments()[1]))>By house</option>
-
                         </select>
                     </div>
                 </div>
@@ -69,7 +69,9 @@
     <script>
         document.getElementById('selectpickerBasic').addEventListener('change', function () {
             var houseId = this.value;
-            if (houseId) {
+            if (houseId && houseId === 'all') {
+                window.location.href = `{{ route('floors.index') }}`
+            } else {
                 window.location.href = '/floors-by-house/' + houseId;
             }
         });

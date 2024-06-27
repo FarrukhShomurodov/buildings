@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Apartment;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
 {
@@ -22,6 +23,8 @@ class ApartmentController extends Controller
             $updatedPhotosUrl = json_encode(array_values($photosUrl));
 
             $apartment->update(['photos_url' => $updatedPhotosUrl]);
+
+            Storage::disk('public')->delete($photoPath);
 
             return response()->json(['message' => 'Photo deleted successfully'], 200);
         } else {
