@@ -31,7 +31,13 @@ class HouseController extends Controller
 
     public function store(HouseRequest $request): RedirectResponse
     {
-        $this->houseService->store($request->validated());
+        $validated = $request->validated();
+
+        if (!$request->hasFile('photo_url')) {
+            $validated['photo_url'] = null;
+        }
+
+        $this->houseService->store($validated);
         return redirect()->route('houses.index');
     }
 

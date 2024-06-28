@@ -39,12 +39,17 @@
                         <td>{{ $apartment->description }}</td>
                         <td>{{ $apartment->house->name }}</td>
                         <td>{{ $apartment->floor->number }}</td>
-                        <td class="main__td">
-                            @foreach(json_decode($apartment->photos_url) as $photo_url)
-                                <div class="td__img">
-                                    <img src="storage/{{ $photo_url }}" alt="House Photo" class="popup-img" width="100px"/>
-                                </div>
-                            @endforeach
+                        <td>
+                            <div class="main__td">
+                                @if($apartment->photos_url)
+                                    @foreach(json_decode($apartment->photos_url) as $photo_url)
+                                        <div class="td__img">
+                                            <img src="storage/{{ $photo_url }}" alt="House Photo" class="popup-img"
+                                                 width="100px"/>
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </div>
                         </td>
                         <td>
                             <a href="{{ route('apartments.edit', $apartment->id) }}" class="btn btn-warning"
@@ -68,8 +73,8 @@
 
 @section('scripts')
     <script>
-        $(document).ready(function() {
-            $('.popup-img').on('click', function() {
+        $(document).ready(function () {
+            $('.popup-img').on('click', function () {
                 var src = $(this).attr('src');
                 var popup = `
                 <div class="popup-overlay" onclick="$(this).remove()">

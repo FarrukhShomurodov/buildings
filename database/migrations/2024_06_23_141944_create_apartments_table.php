@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->json('photos_url');
+            $table->json('photos_url')->nullable();
             $table->foreignId('house_id')->constrained('houses')->onDelete('cascade');;
             $table->foreignId('floor_id')->constrained('floors')->onDelete('cascade');;
             $table->timestamps();

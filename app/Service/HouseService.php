@@ -11,7 +11,10 @@ class HouseService
 {
     public function store(array $validated): Model|Builder
     {
-        $validated['photo_url'] = request()->file('photo_url')->store('photos');
+        if ($validated['photo_url']) {
+            $validated['photo_url'] = request()->file('photo_url')->store('photos');
+        }
+
         return House::query()->create($validated);
     }
 

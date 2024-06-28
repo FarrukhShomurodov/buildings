@@ -13,11 +13,15 @@ class ApartmentService
      */
     public function store(array $validated)
     {
-        $photos = array_map(function ($file) {
-            return $file->store('photos_url');
-        }, request()->file('photos_url'));
+        if (isset($validated['photos_url'])) {
 
-        $validated['photos_url'] = json_encode($photos);
+            $photos = array_map(function ($file) {
+                return $file->store('photos_url');
+            }, request()->file('photos_url'));
+
+            $validated['photos_url'] = json_encode($photos);
+
+        }
 
         $floorId = $validated['floor_id'];
 

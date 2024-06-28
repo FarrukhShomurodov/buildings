@@ -26,9 +26,13 @@
                         <td>{{ $house->id }}</td>
                         <td>{{ $house->name }}</td>
                         <td>{{ $house->description }}</td>
-                        <td class="main__td">
-                            <div class="td__img">
-                                <img class="popup-img" src="storage/{{ $house->photo_url }}" alt="House Photo"/>
+                        <td>
+                            <div class="main__td">
+                                <div class="td__img">
+                                    @if($house->photo_url)
+                                        <img class="popup-img" src="storage/{{ $house->photo_url }}" alt="House Photo"/>
+                                    @endif
+                                </div>
                             </div>
                         </td>
                         <td>
