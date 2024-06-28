@@ -3,7 +3,7 @@
 @section('content')
     <div class="card">
         <div class="d-flex justify-content-between align-items-center">
-            <h5 class="card-header">Floors</h5>
+            <h5 class="card-header">Этажи</h5>
 
             <div class="d-flex justify-content-center align-items-center">
 
@@ -16,12 +16,12 @@
                                     value="{{ $house->id }}" @selected($house->id == (isset(request()->segments()[1]) ? request()->segments()[1] : 1) )>{{ $house->name }}</option>
                             @endforeach
                             <option value="all">All</option>
-                            <option disabled @selected(!isset(request()->segments()[1]))>By house</option>
+                            <option disabled @selected(!isset(request()->segments()[1]))>По дому</option>
                         </select>
                     </div>
                 </div>
 
-                <a href="{{ route('floors.create') }}" class="btn btn-primary" style="margin-right: 22px;">Create</a>
+                <a href="{{ route('floors.create') }}" class="btn btn-primary" style="margin-right: 22px;">Создать</a>
             </div>
         </div>
 
@@ -31,9 +31,9 @@
                 <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Number</th>
-                    <th>Apartment count</th>
-                    <th>House</th>
+                    <th>Номер</th>
+                    <th>Количество квартир</th>
+                    <th>Дом</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -47,14 +47,14 @@
                         <td>{{ $floor->house->name }}</td>
                         <td>
                             <a href="{{ route('floors.edit', $floor->id) }}" class="btn btn-warning"
-                               style="margin-right: 22px;">Udpate</a>
+                               style="margin-right: 22px;">Редактировать</a>
                         </td>
                         <td>
                             <form action="{{ route('floors.destroy', $floor->id) }}" method="POST"
                                   style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger" style="margin-left: -40px !important;">Delete</button>
+                                <button class="btn btn-danger" style="margin-left: -40px !important;">Удалить</button>
                             </form>
                         </td>
                     </tr>

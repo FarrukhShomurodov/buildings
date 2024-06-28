@@ -3,29 +3,29 @@
 @section('content')
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Create Apartment</h5>
+            <h5 class="mb-0">Создать квартиру</h5>
         </div>
         <div class="card-body">
             <form id="apartmentForm" action="{{ route('apartments.store') }}" method="POST"
                   enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
-                    <label class="form-label" for="basic-default-fullname">Name</label>
-                    <input type="text" name="name" class="form-control" id="basic-default-fullname" placeholder="Name"
+                    <label class="form-label" for="basic-default-fullname">Название</label>
+                    <input type="text" name="name" class="form-control" id="basic-default-fullname" placeholder="Название"
                            required>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="basic-default-message">Description</label>
+                    <label class="form-label" for="basic-default-message">Описание</label>
                     <textarea id="basic-default-message" name="description" class="form-control"
-                              placeholder="Description" required></textarea>
+                              placeholder="Описание" required></textarea>
                 </div>
                 <div class="mb-3">
-                    <label for="houseDropdown" class="form-label">House</label>
+                    <label for="houseDropdown" class="form-label">Дом</label>
                     <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle w-100 d-flex justify-content-between"
                                 type="button" id="houseDropdown" data-bs-toggle="dropdown" aria-expanded="false"
                                 style="border: 1px solid #d4d8dd; padding: .535rem 1.375rem .535rem .75rem;">
-                            Select a house
+                            Выбрать дом
                         </button>
                         <ul class="dropdown-menu w-100" aria-labelledby="houseDropdown">
                             @foreach($houses as $house)
@@ -37,27 +37,27 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="floorDropdown" class="form-label">Floor</label>
+                    <label for="floorDropdown" class="form-label">Этаж</label>
                     <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle w-100 d-flex justify-content-between"
                                 type="button" id="floorDropdown" data-bs-toggle="dropdown" aria-expanded="false"
                                 style="border: 1px solid #d4d8dd; padding: .535rem 1.375rem .535rem .75rem;">
-                            Select a floor
+                            Выберите этаж
                         </button>
                         <ul class="dropdown-menu w-100" aria-labelledby="floorDropdown">
-                            <li><a class="dropdown-item disabled" href="#">Select a house first</a></li>
+                            <li><a class="dropdown-item disabled" href="#">Сначала выберите дом</a></li>
                         </ul>
                         <input type="hidden" name="floor_id" id="floorInput">
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="imageInput" class="form-label">Upload Images</label>
+                    <label for="imageInput" class="form-label">Загрузить изображение</label>
                     <input type="file" name="photos_url[]" id="imageInput" class="form-control" multiple>
                 </div>
                 <div id="imagePreview" class="mb-3 main__td">
                     <!-- Image previews will be inserted here dynamically -->
                 </div>
-                <button type="submit" class="btn btn-primary">Send</button>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
             </form>
         </div>
     </div>
@@ -104,9 +104,9 @@
                 updateDropdownSelection(houseDropdown, houseInput, $(this).data('value'), $(this).text(), houseDropdown.next('.dropdown-menu'));
 
 
-                floorDropdown.text('Select a floor');
+                floorDropdown.text('Выберите этаж');
                 floorInput.val('');
-                floorMenu.html('<li><a class="dropdown-item disabled" href="#">Select a house first</a></li>');
+                floorMenu.html('<li><a class="dropdown-item disabled" href="#">Сначала выберите дом</a></li>');
 
 
                 const houseId = houseInput.val();
@@ -160,7 +160,7 @@
                             const noFloorsItem = $('<a>', {
                                 class: 'dropdown-item disabled',
                                 href: '#',
-                                text: 'No floors found'
+                                text: 'Этажей не найдено'
                             });
                             floorMenu.append(noFloorsItem);
                         }
@@ -194,7 +194,7 @@
 
                         const deleteBtn = $('<button>', {
                             class: 'btn btn-danger btn-sm delete-image',
-                            text: 'Delete',
+                            text: 'Удалить',
                             click: function () {
                                 imgContainer.remove();
 

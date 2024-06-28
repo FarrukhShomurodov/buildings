@@ -7,28 +7,28 @@
             <li class="menu-item {{ Request::is('/') ? 'active' : '' }}">
                 <a href="{{route('users')}}" class="menu-link">
                     <i class="user-icon tf-icons bx bx-user"></i>
-                    <div data-i18n="Users">Users</div>
+                    <div data-i18n="Пользователи">Пользователи</div>
                 </a>
             </li>
 
             <li class="menu-item {{ Route::is('houses.index') ? 'active' : '' }}">
                 <a href="{{ route('houses.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-building-house"></i>
-                    <div data-i18n="House">House</div>
+                    <div data-i18n="Дома">Дома</div>
                 </a>
             </li>
 
             <li class="menu-item {{ Route::is('floors.index') ? 'active' : '' }}">
                 <a href="{{ route('floors.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-layer"></i>
-                    <div data-i18n="Floor">Floor</div>
+                    <div data-i18n="Этажи">Этажи</div>
                 </a>
             </li>
 
             <li class="menu-item {{ Route::is('apartments.index') ? 'active' : '' }}">
                 <a href="{{ route('apartments.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-alt"></i>
-                    <div data-i18n="Apartment">Apartment</div>
+                    <div data-i18n="Квартиры">Квартиры </div>
                 </a>
             </li>
         </ul>

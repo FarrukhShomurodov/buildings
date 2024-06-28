@@ -21,8 +21,8 @@ class Floor extends Model
         return $this->belongsTo(House::class);
     }
 
-    public function apartments(): BelongsTo
+    public function apartments(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->belongsTo(Apartment::class);
+        return $this->hasMany(Apartment::class);
     }
 }

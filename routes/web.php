@@ -13,7 +13,10 @@ Route::post('login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => 'auth', 'admin'], function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
     Route::get('/', [UserController::class, 'index'])->name('users');
+    Route::resource('/users', UserController::class);
+
     Route::get('/floors-by-house/{house}', [FloorController::class, 'byHouse']);
 
     Route::resource('/houses', HouseController::class);

@@ -3,25 +3,38 @@
 namespace App\Service;
 
 use App\Models\Apartment;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Floor;
 use Illuminate\Support\Facades\Storage;
 
 class ApartmentService
 {
-    public function store(array $validated): Model|Builder
+    /**
+     * @throws \Exception
+     */
+    public function store(array $validated)
     {
-
         $photos = array_map(function ($file) {
             return $file->store('photos_url');
         }, request()->file('photos_url'));
 
         $validated['photos_url'] = json_encode($photos);
 
-        return Apartment::query()->create($validated);
+        $floorId = $validated['floor_id'];
+
+        $floor = Floor::query()->findOrFail($floorId);
+
+        $currentApartmentsCount = $floor->apartments()->count();
+
+        $maxApartmentsCount = $floor->apartment_count;
+
+        if ($currentApartmentsCount >= $maxApartmentsCount) {
+            return back()->withErrors(['error' => 'Максимальное количество квартир на этом этаже уже достигнуто.']);
+        } else {
+            return Apartment::query()->create($validated);
+        }
     }
 
-    public function update(Apartment $apartment, array $validated): Apartment
+    public function update(Apartment $apartment, array $validated)
     {
         if (isset($validated['photos_url'])) {
             $photos = $validated['photos_url'];
@@ -37,9 +50,21 @@ class ApartmentService
             $validated['photos_url'] = json_encode($allPhotos);
         }
 
-        $apartment->update($validated);
+        $floorId = $validated['floor_id'];
 
-        return $apartment->refresh();
+        $floor = Floor::query()->findOrFail($floorId);
+
+        $currentApartmentsCount = $floor->apartments()->count();
+
+        $maxApartmentsCount = $floor->apartment_count;
+
+        if ($currentApartmentsCount >= $maxApartmentsCount) {
+            return back()->withErrors(['error' => 'Максимальное количество квартир на этом этаже уже достигнуто.']);
+        } else {
+            $apartment->update($validated);
+
+            return $apartment->refresh();
+        }
     }
 
 

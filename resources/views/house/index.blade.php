@@ -3,8 +3,8 @@
 @section('content')
     <div class="card">
         <div class="d-flex justify-content-between align-items-center">
-            <h5 class="card-header">Houses</h5>
-            <a href="{{ route('houses.create') }}" class="btn btn-primary" style="margin-right: 22px;">Create</a>
+            <h5 class="card-header">Дома</h5>
+            <a href="{{ route('houses.create') }}" class="btn btn-primary" style="margin-right: 22px;">Создать</a>
         </div>
 
 
@@ -13,9 +13,9 @@
                 <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Photo</th>
+                    <th>Название</th>
+                    <th>Описание</th>
+                    <th>Фото</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -33,7 +33,7 @@
                         </td>
                         <td>
                             <a href="{{ route('houses.edit', $house->id) }}" class="btn btn-warning"
-                               style="margin-right: 22px;">Udpate</a>
+                               style="margin-right: 22px;">Редактировать</a>
                         </td>
                         <td>
 
@@ -41,7 +41,7 @@
                                   style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger" style="margin-left: -40px !important;">Delete</button>
+                                <button class="btn btn-danger" style="margin-left: -40px !important;">Удалить</button>
                             </form>
                         </td>
                     </tr>

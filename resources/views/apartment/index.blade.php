@@ -3,20 +3,28 @@
 @section('content')
     <div class="card">
         <div class="d-flex justify-content-between align-items-center">
-            <h5 class="card-header">Apartment</h5>
-            <a href="{{ route('apartments.create') }}" class="btn btn-primary" style="margin-right: 22px;">Create</a>
+            <h5 class="card-header">Квартиры</h5>
+            <a href="{{ route('apartments.create') }}" class="btn btn-primary" style="margin-right: 22px;">Создать</a>
         </div>
-
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <div class="card-datatable table-responsive">
             <table class="datatables-users table border-top">
                 <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>House</th>
-                    <th>Floor</th>
+                    <th>Название</th>
+                    <th>Описание</th>
+                    <th>Дом</th>
+                    <th>Этаж</th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -40,14 +48,14 @@
                         </td>
                         <td>
                             <a href="{{ route('apartments.edit', $apartment->id) }}" class="btn btn-warning"
-                               style="margin-right: 22px;">Udpate</a>
+                               style="margin-right: 22px;">Редактировать</a>
                         </td>
                         <td>
                             <form action="{{ route('apartments.destroy', $apartment->id) }}" method="POST"
                                   style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger" style="margin-left: -40px !important;">Delete</button>
+                                <button class="btn btn-danger" style="margin-left: -40px !important;">Удалить</button>
                             </form>
                         </td>
                     </tr>
